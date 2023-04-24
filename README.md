@@ -37,29 +37,43 @@ Quando o player 1(que representa o sobrevivente) vencer, seremeos enviados ao ce
 
   ##Cenario de ecolha de Jogabilidade e Atores
   
-  Neste cenário encontra-se dois atores, um para escolher o modo gráfico e outro para escolher o modo consola, ao escolher o modo gráfico a variável ¨Modo Grafico¨       será mudado para 1, ativando assim o modo gráfico e será emitido uma mensagem de inicio do jogo, ao escolher o modo consola a variável ¨Modo gráfico¨ será alterada     para 0, mostrando assim que não estamos mais no modo gráfico, e só temos duas opções, se não é um logicamente é o outro, e também, do mesmo modo, será emitida uma     mensagem de início do jogo.
+   Neste cenário encontra-se dois atores, um para escolher o modo gráfico e outro para escolher o modo consola, ao escolher o modo gráfico a variável ¨Modo Grafico¨       será mudado para 1, ativando assim o modo gráfico e será emitido uma mensagem de inicio do jogo, ao escolher o modo consola a variável ¨Modo gráfico¨ será alterada     para 0, mostrando assim que não estamos mais no modo gráfico, e só temos duas opções, se não é um logicamente é o outro, e também, do mesmo modo, será emitida uma     mensagem de início do jogo.
   
   ##Campo de jogo
   
     Neste cenário temoos:
       
       ## Botão de Menu
-        Possui todos os codigos para os efeitos visuais e sonoros semelhante aos outros, e ao ser clicado emitirá a mensagem ¨enter¨ que nos enviará ao menu principal, reiniciando assim o jogo.
+        Possui todos os codigos para os efeitos visuais e sonoros semelhante aos outros, e ao ser clicado emitirá a mensagem ¨enter¨ que nos enviará ao menu principal,         reiniciando assim o jogo.
         
       ## Peças
-      O player atual é escolhido por meio de uma variável chamada ¨currentplayer¨, essa variavel é alterada inicialmente para 1, no começo do jogo, após a primeira jogada do player 1 ela será incrementada(+1), de seguida após a jogada do player 2 ela será decrementada(-1) e assim sucessivamente.
+         O player atual é escolhido por meio de uma variável chamada ¨currentplayer¨, essa variavel é alterada inicialmente para 1, no começo do jogo, após a primeira          jogada do player 1 ela será incrementada(+1), de seguida após a jogada do player 2 ela será decrementada(-1) e assim sucessivamente.
       
-      O jogador X pode ser excolhide de duas formas:
-        -No modo gráfico: Ao ser clicado, ela mudará o valor da variavel ¨jogX¨ que representa literamente Jogador X, para 1 e os outros JogX1 e JogX2 para 0, isso se as variáveis, Modo gráfico e currentplayer estiverem em 1.
+          O jogador X pode ser excolhide de duas formas:
+          -No modo gráfico: Ao ser clicado, ela mudará o valor da variavel ¨jogX¨ que representa literamente Jogador X, para 1 e os outros JogX1 e JogX2 para 0, isso               se as variáveis, Modo gráfico e currentplayer estiverem em 1.
         
-        -No modo Consola: ao ser clicado a letra a ela fará exatamente o mesmo que no modo gráfico.
+          -No modo Consola: ao ser clicado a letra a ela fará exatamente o mesmo que no modo gráfico.
         
-      Existe uma outra variável que definirá o numero da posição em que o x se encontra, se X for igual a 0 ele encontra-se do lado do tabuleiro, como no principio do jogo, se X for igual a 5 ela vai para a posição x e y estipulada no codigo que representa exatamente a posição 5 do tabuleiro.
+       Existe uma outra variável que definirá o numero da posição em que o x se encontra, se X for igual a 0 ele encontra-se do lado do tabuleiro, como no principio do         jogo, se X for igual a 5 ela vai para a posição x e y estipulada no codigo que representa exatamente a posição 5 do tabuleiro.
       
       
-      Para as outras duas peças do Player 1 é exatamente o mesmo excepto pelo nome das variáveis que ao envés de ser X agora serão X1 ou X2.
+       Para as outras duas peças do Player 1 é exatamente o mesmo excepto pelo nome das variáveis que ao envés de ser X agora serão X1 ou X2.
       
-      O mesmo vale para o player 2 é exatamente o mesmo com a exceção de que passam a ser O, O1 e O2.
+       O mesmo vale para o player 2 é exatamente o mesmo com a exceção de que passam a ser O, O1 e O2.
+      
+      ## Tabuleiro
+        Cada quadrado do tabuleiro é um ator, de 1 a 9. Ao ser clicado o é executado o código de que se nao for verdade que este espaço do do tabuleiro ela deve seguir         à proxima condiçao, se nao deve exibir uma mensagem na tela de que a area esta ocupada,se sim deve seguir à condição se modo gráfico for 1 ela deve seguir para         a proxima condiçao para garantir que o curentplayer é 1 ou dois, verificado o current player, a seguir vai verificar que peça foi escolhida JogX, Jog O1,...           ,de seguida vem a condição das unicas posições que podem jogar nesse quadrado, no caso apenas dos quadrados vizinhos na horizontal e vertical, e no caso do             bloco 5, na diagonal. se todas essas condições forem atendida ela mudará o valor de X, X1, X2, O, O1 ou O2 para o valor do numero do quadrado que segundo o             codigo introduzido nas peças ela irá para a respetiva posição. Ainda no mesmo código, ao mover-se entre os blocos, linha 1,2,3 coluna 1,2,3 e diagonal 1 e 2           (referente ao X) e as mesmas variáveis com a lentra O no meio ex Diagonal O1(referente ao O), essa variáveis incrementam(+1) ou decrementam(-1) conforme a             posição selecionada, fazendo assim com que o numero de cada uma seja o numero de elementos do mesmo player em tal direção. EX: linha1 = 2 diagonal 1= 1                 diagonal 2= 1 coluna1=1 coluna3=1 significa que temos duas peças do player 1 na mesma linha, linha 1, essas peças se encontram na coluna 1 e coluna 3, o que           quer dizer que elas se encontram na posição 1 e 3 pois além da linha e colunas, as diagonais também estão a 1.
+        A mesma lógica se repete para todos os blocos do tabuleiro.
+        Quando as variviáveis linha 1, linha 2, linha 3, coluna 1, coluna 2 , coluna 3, diagonal 1 ou diagonal 2 forem = 3 a variável vencedor será alterado para 1,           mostrando assim que o player 1 venceu e o cenário será mudado para o cenario de vencedor do player 1 ou X, nesse cenário temos dois botõ com exatamente as             mesmas caracteristicas sonoras e visuais que os outros botões do menu primmcipal, porém o Restart ao ser clicado emitirá a mensagem ¨enter¨ que reiniciará o           jogo, e o quit que ao ser clicadao irá parar tudo, neutralizando assim o jogo. O mesmo acontece se as mesmas variaveis(versão O, ex: Linha O1) forem igual a 3,         porem quando as variaveis do O forem igual a 3, seremos redirecionados ao cenário Game Over com os mesmos botões de Restart e Quit que o cenário Vencedor               anteriormente explicado.
+        
+     ##Código nos cenários
+
+       Os códigos do cenário servem basicamente para alterar de cenario conforme a mensagem, ou conforme o valor da variavel, para mudar de som conforme os mesmos, e          para zerar e econder todas as variáveis quando a bandeira for clicada e quando receber a mensagem enter para poder zerar o jogo.
+
+
+
+//Algumas atualizações para a próxima versão seriam os o menu, durante o jogo que terá os botões quit e restart, a opção para aumentar e diminuir o volume, a opção para escolher musicas de fundo. A escolha de avatares subreviventes e o seu skin, os skins do assassino, a história inicial de como tudo começou, incluido narração(em inglês) e trilha sonora, um video macabro do assassino em ação e as opções Multiplayer CO-OP e Adventure mode. Ansiosos para a próxima versão? Pois é, Eu Também.//
+        
       
      
   
